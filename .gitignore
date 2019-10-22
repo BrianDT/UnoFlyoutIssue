@@ -3,3 +3,10 @@
 ################################################################################
 
 /FlyoutIssue/FlyoutIssue.Droid/bin/Debug
+/FlyoutIssue/FlyoutIssue.Droid/obj
+/FlyoutIssue/FlyoutIssue.iOS/bin/iPhone/Debug
+/FlyoutIssue/FlyoutIssue.iOS/obj
+/FlyoutIssue/FlyoutIssue.UWP/bin/x86/Debug
+/FlyoutIssue/FlyoutIssue.UWP/obj
+/FlyoutIssue/FlyoutIssue.Wasm/obj
+/.vs
