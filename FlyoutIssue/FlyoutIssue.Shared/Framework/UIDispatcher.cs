@@ -1,4 +1,4 @@
-﻿// <copyright file="UIDispatcher.cs" company="Visual Software Systems Ltd.">Copyright (c) 2013 All rights reserved</copyright>
+﻿// <copyright file="UIDispatcher.cs" company="Visual Software Systems Ltd.">Copyright (c) 2013, 2019 All rights reserved</copyright>
 
 namespace Vssl.Samples.Framework
 {
@@ -61,7 +61,7 @@ namespace Vssl.Samples.Framework
         /// <returns>An awaitable task</returns>
         public async Task InvokeAsync(Action action)
         {
-            await this.Execute(action);
+            await this.ExecuteAsync(action);
         }
 
         /// <summary>
@@ -72,19 +72,16 @@ namespace Vssl.Samples.Framework
         /// <param name="priority">The priority</param>
         public void ExecuteNoWait(Action action, int delayms = 0, CoreDispatcherPriority priority = CoreDispatcherPriority.Normal)
         {
-            if (delayms > 0)
-            {
-                Task.Delay(delayms).ConfigureAwait(this.dispatcher.HasThreadAccess).GetAwaiter().GetResult();
-            }
-
-            if (this.dispatcher == null || (this.dispatcher.HasThreadAccess && priority == CoreDispatcherPriority.Normal))
+            if (this.dispatcher == null || (delayms == 0 && this.dispatcher.HasThreadAccess && priority == CoreDispatcherPriority.Normal))
             {
                 action();
             }
             else
             {
-                // Not awated execution will continue before the action has completed
-                this.dispatcher.RunAsync(priority, () => action()).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                Task.Run(() =>
+                {
+                    this.ExecuteAsync(action, delayms, priority);
+                });
             }
         }
 
@@ -95,7 +92,7 @@ namespace Vssl.Samples.Framework
         /// <param name="delayms">Any delay before the execution</param>
         /// <param name="priority">The priority</param>
         /// <returns>An awaitable task</returns>
-        public async Task Execute(Action action, int delayms = 0, CoreDispatcherPriority priority = CoreDispatcherPriority.Normal)
+        public async Task ExecuteAsync(Action action, int delayms = 0, CoreDispatcherPriority priority = CoreDispatcherPriority.Normal)
         {
             if (delayms > 0)
             {
