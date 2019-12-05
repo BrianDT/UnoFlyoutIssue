@@ -81,6 +81,7 @@ namespace FlyoutIssue
         private void Enable_Manual_Dismiss(object sender, RoutedEventArgs e)
         {
             this.doManualFlyoutHide = true;
+            this.VM.EnableManualDismiss = false;
         }
 
         /// <summary>

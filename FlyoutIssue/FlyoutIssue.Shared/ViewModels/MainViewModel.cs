@@ -22,12 +22,18 @@ namespace FlyoutIssue.Shared.ViewModels
         private IDialogService dialogService;
 
         /// <summary>
+        /// A value indicating whether the enable manual dismiss button is enabled
+        /// </summary>
+        private bool enableManualDismiss;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MainViewModel" /> class.
         /// </summary>
         /// <param name="dialogService">Platform specific dialog display</param>
         public MainViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;
+            this.enableManualDismiss = true;
             this.DoStuffCommand = new DelegateCommandAsync(this.DoStuff, (p) => { return true; });
         }
 
@@ -35,6 +41,26 @@ namespace FlyoutIssue.Shared.ViewModels
         /// Gets or sets a value indicating whether the fly-out command has been activated
         /// </summary>
         public bool Ping { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the enable manual dismiss button is enabled
+        /// </summary>
+        public bool EnableManualDismiss
+        {
+            get
+            {
+                return this.enableManualDismiss;
+            }
+
+            set
+            {
+                if (value != this.enableManualDismiss)
+                {
+                    this.enableManualDismiss = value;
+                    this.OnPropertyChanged("EnableManualDismiss");
+                }
+            }
+        }
 
         /// <summary>
         /// Gets the command activated by the fly-out
