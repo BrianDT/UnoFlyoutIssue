@@ -26,6 +26,7 @@ Global
 		FlyoutIssue\FlyoutIssue.Shared\FlyoutIssue.Shared.projitems*{6279c845-92f8-4333-ab99-3d213163593c}*SharedItemsImports = 13
 		FlyoutIssue\FlyoutIssue.Shared\FlyoutIssue.Shared.projitems*{93e9c00d-b698-404b-92bf-911697d65ba3}*SharedItemsImports = 4
 		FlyoutIssue\FlyoutIssue.Shared\FlyoutIssue.Shared.projitems*{ab88c9be-4efd-4c5e-a670-e17eb93823a7}*SharedItemsImports = 4
+		FlyoutIssue\FlyoutIssue.Shared\FlyoutIssue.Shared.projitems*{f83db0b6-409a-4202-afe7-5e07b84b83a8}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
