@@ -28,6 +28,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Services\DialogService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IDialogService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\IBaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />

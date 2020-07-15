@@ -1,4 +1,4 @@
-﻿// <copyright file="MainPage.xaml.cs" company="Visual Software Systems Ltd.">Copyright (c) 2019 All rights reserved</copyright>
+﻿// <copyright file="MainPage.xaml.cs" company="Visual Software Systems Ltd.">Copyright (c) 2019, 2020 All rights reserved</copyright>
 
 namespace FlyoutIssue
 {
@@ -52,6 +52,16 @@ namespace FlyoutIssue
             // This would normally be injected but for brevity
             this.DataContext = new MainViewModel(new DialogService());
             this.VM.PropertyChanged += this.OnViewModelPropertyChanged;
+            var textReduction = 16 + 16 + 24 + 8 + 8; // Reduce by padding * 2, symbol, margin,
+#if __DROID__
+            textReduction += 16;
+#endif
+            this.VM.SetFlyoutTextReduction(textReduction);
+
+            this.SizeChanged += (s, e) =>
+            {
+                this.VM.PageSizeChanged(e.NewSize.Width, e.NewSize.Height);
+            };
         }
 
         /// <summary>
