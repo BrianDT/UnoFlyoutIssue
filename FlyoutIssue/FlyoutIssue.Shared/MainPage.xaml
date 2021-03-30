@@ -79,7 +79,7 @@
                                                 <SymbolIcon Symbol="Contact" />
                                             </Viewbox>
                                             <TextBlock x:Name="menu1Text" Text="Then Tap this (Compile time binding)" 
-                                                       MaxWidth="{Binding Path=(vh:ViewHelpers.MaxFlyoutTextWidth), RelativeSource={RelativeSource TemplatedParent}}"
+                                                       MaxWidth="{Binding Path=(vh:ViewHelpers.MaxFlyoutTextWidth), RelativeSource={RelativeSource TemplatedParent}, FallbackValue=100, TargetNullValue=100}"
                                                        TextWrapping="WrapWholeWords" Margin="8,0,8,0"/>
                                         </StackPanel>
                                     </Border>
@@ -130,7 +130,7 @@
                                                 <SymbolIcon Symbol="Contact" />
                                             </Viewbox>
                                             <TextBlock x:Name="menu2Text" Text="Or Tap this (Traditional reflection based Binding)"
-                                                       MaxWidth="{Binding Path=(vh:ViewHelpers.MaxFlyoutTextWidth), RelativeSource={RelativeSource TemplatedParent}}"
+                                                       MaxWidth="{Binding Path=(vh:ViewHelpers.MaxFlyoutTextWidth), RelativeSource={RelativeSource TemplatedParent}, FallbackValue=100, TargetNullValue=100}"
                                                        TextWrapping="WrapWholeWords" Margin="8,0,8,0"/>
                                         </StackPanel>
                                     </Border>
