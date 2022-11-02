@@ -4,6 +4,7 @@ namespace FlyoutIssue.Shared.ViewModels
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Input;
@@ -14,6 +15,7 @@ namespace FlyoutIssue.Shared.ViewModels
     /// <summary>
     /// The view model for the fly-out issue sample
     /// </summary>
+    [Bindable(bindable: true)]
     public class MainViewModel : BaseViewModel
     {
         /// <summary>
