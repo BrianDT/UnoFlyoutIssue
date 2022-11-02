@@ -1,15 +1,15 @@
 ﻿################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
-
-/FlyoutIssue/FlyoutIssue.Droid/bin
-/FlyoutIssue/FlyoutIssue.Droid/obj
-/FlyoutIssue/FlyoutIssue.iOS/bin
-/FlyoutIssue/FlyoutIssue.iOS/obj
-/FlyoutIssue/FlyoutIssue.UWP/bin
-/FlyoutIssue/FlyoutIssue.UWP/obj
-/FlyoutIssue/FlyoutIssue.Wasm/obj
-/.vs
-/FlyoutIssue/FlyoutIssue.Wasm/bin
-/FlyoutIssue/FlyoutIssue.Droid/FlyoutIssue.Droid.csproj.user
+*.suo
+*.vspscc
+*.vssscc
+*.USER
+.vs
+bin
+obj
+StyleCop.Cache
+TestResults
+AppPackages
+*.*.*.cache
 
