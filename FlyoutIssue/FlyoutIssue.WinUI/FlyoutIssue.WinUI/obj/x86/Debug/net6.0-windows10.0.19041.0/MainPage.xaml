@@ -1,0 +1,65 @@
+﻿<Page x:ConnectionId='1'
+    x:Name="control"
+    x:Class="FlyoutIssue.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vh="using:FlyoutIssue.Shared"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:ConnectionId='8' Content="Enable Manual dismiss"                                Margin="0,24,0,0" Padding="12,4,12,4"
+                                                                            />
+        </StackPanel>
+
+        <Border x:ConnectionId='2' Grid.Row="1" BorderBrush="Black" BorderThickness="1" Padding="8"
+                HorizontalAlignment="Right" VerticalAlignment="Top"
+                Margin="0,24,36,24"
+                Background="LightGray" CornerRadius="2"
+                                    >
+            <TextBlock Text="Tap me" Margin="20" FontSize="30" />
+
+            <FlyoutBase.AttachedFlyout>
+                <Flyout x:ConnectionId='3' x:Name="flyout" LightDismissOverlayMode="On" Placement="TopEdgeAlignedRight">
+                    <Flyout.FlyoutPresenterStyle>
+                        <Style TargetType="FlyoutPresenter">
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                    </Flyout.FlyoutPresenterStyle>
+
+                    <StackPanel>
+                        
+                        <Button x:ConnectionId='4'                                     
+                                HorizontalAlignment="Right"
+                                                                                                               >
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <vh:FlyoutButtonControl Text="Then Tap this (Compile time binding)" />
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button x:ConnectionId='5' Command="{Binding DoStuffCommand, Mode=OneWay}"
+                                HorizontalAlignment="Right" Margin="0,12,0,0"
+                                                                                                               >
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <vh:FlyoutButtonControl Text="Or Tap this (Traditional reflection based Binding)" />
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                    </StackPanel>
+                </Flyout>
+            </FlyoutBase.AttachedFlyout>
+        </Border>
+    </Grid>
+</Page>
+

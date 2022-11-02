@@ -9,7 +9,11 @@ namespace Vssl.Samples.Framework
     using System.Threading.Tasks;
     using Vssl.Samples.FrameworkInterfaces;
     using Windows.UI.Core;
+#if WINDOWS_UWP
     using Windows.UI.Xaml;
+#else
+    using Microsoft.UI.Xaml;
+#endif
 
     /// <summary>
     /// A UWP platform specific implementation of the UI Dispatcher facade
@@ -28,7 +32,7 @@ namespace Vssl.Samples.Framework
         {
             if (Window.Current != null)
             {
-                this.dispatcher = Windows.UI.Xaml.Window.Current.Dispatcher;
+                this.dispatcher = Window.Current.Dispatcher;
             }
 
             DispatchHelper.Initialise(this);

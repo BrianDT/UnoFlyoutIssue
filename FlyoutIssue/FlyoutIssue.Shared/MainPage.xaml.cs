@@ -14,13 +14,15 @@ namespace FlyoutIssue
     using Vssl.Samples.FrameworkInterfaces;
     using Windows.Foundation;
     using Windows.Foundation.Collections;
+#if WINDOWS_UWP
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Controls.Primitives;
-    using Windows.UI.Xaml.Data;
-    using Windows.UI.Xaml.Input;
-    using Windows.UI.Xaml.Media;
-    using Windows.UI.Xaml.Navigation;
+#else
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Controls;
+    using Microsoft.UI.Xaml.Controls.Primitives;
+#endif
 
     // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -53,7 +55,7 @@ namespace FlyoutIssue
             this.DataContext = new MainViewModel(new DialogService());
             this.VM.PropertyChanged += this.OnViewModelPropertyChanged;
             var textReduction = 16 + 16 + 24 + 8 + 8; // Reduce by padding * 2, symbol, margin,
-#if __DROID__
+#if ANDROID || (NET6_0 && WINDOWS)
             textReduction += 16;
 #endif
             this.VM.SetFlyoutTextReduction(textReduction);

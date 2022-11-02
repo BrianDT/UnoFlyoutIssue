@@ -41,48 +41,7 @@
                                 vh:ViewHelpers.MaxFlyoutTextWidth="{x:Bind VM.MaxFlyoutTextWidth, Mode=OneWay}">
                             <Button.Template>
                                 <ControlTemplate>
-                                    <Border BorderBrush="Blue" BorderThickness="1" Padding="16" Background="LightBlue" CornerRadius="8">
-
-                                        <!--<VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup>
-                                                --><!-- Medium window VisualState --><!--
-                                                <VisualState x:Key="MediumWindow">
-
-                                                    --><!-- Medium window trigger --><!--
-                                                    <VisualState.StateTriggers>
-                                                        <AdaptiveTrigger MinWindowWidth="{StaticResource MediumWindowSnapPoint}"/>
-                                                    </VisualState.StateTriggers>
-
-                                                </VisualState>
-
-                                                --><!-- Small window VisualState --><!--
-                                                <VisualState x:Key="SmallWindow">
-
-                                                    --><!-- Small window trigger --><!--
-                                                    <VisualState.StateTriggers >
-                                                        <AdaptiveTrigger MinWindowWidth="{StaticResource MinWindowSnapPoint}"/>
-                                                    </VisualState.StateTriggers>
-
-                                                    --><!-- Small window setters --><!--
-                                                    <VisualState.Setters>
-
-                                                        --><!-- Apply mobile itemtemplate and styles --><!--
-                                                        <Setter Target="menu1Text.MaxWidth" Value="310" />
-                                                    </VisualState.Setters>
-                                                </VisualState>
-                                            </VisualStateGroup>
-
-                                        </VisualStateManager.VisualStateGroups>-->
-
-                                        <StackPanel Orientation="Horizontal">
-                                            <Viewbox Height="24" Width="24">
-                                                <SymbolIcon Symbol="Contact" />
-                                            </Viewbox>
-                                            <TextBlock x:Name="menu1Text" Text="Then Tap this (Compile time binding)" 
-                                                       MaxWidth="{Binding Path=(vh:ViewHelpers.MaxFlyoutTextWidth), RelativeSource={RelativeSource TemplatedParent}, FallbackValue=100, TargetNullValue=100}"
-                                                       TextWrapping="WrapWholeWords" Margin="8,0,8,0"/>
-                                        </StackPanel>
-                                    </Border>
+                                    <vh:FlyoutButtonControl Text="Then Tap this (Compile time binding)" />
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
@@ -92,48 +51,7 @@
                                 vh:ViewHelpers.MaxFlyoutTextWidth="{x:Bind VM.MaxFlyoutTextWidth, Mode=OneWay}">
                             <Button.Template>
                                 <ControlTemplate>
-                                    <Border BorderBrush="Blue" BorderThickness="1" Padding="16" Background="LightBlue" CornerRadius="8">
-
-                                        <!--<VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup>
-                                                --><!-- Medium window VisualState --><!--
-                                                <VisualState x:Key="MediumWindow">
-
-                                                    --><!-- Medium window trigger --><!--
-                                                    <VisualState.StateTriggers>
-                                                        <AdaptiveTrigger MinWindowWidth="{StaticResource MediumWindowSnapPoint}"/>
-                                                    </VisualState.StateTriggers>
-
-                                                </VisualState>
-
-                                                --><!-- Small window VisualState --><!--
-                                                <VisualState x:Key="SmallWindow">
-
-                                                    --><!-- Small window trigger --><!--
-                                                    <VisualState.StateTriggers >
-                                                        <AdaptiveTrigger MinWindowWidth="{StaticResource MinWindowSnapPoint}"/>
-                                                    </VisualState.StateTriggers>
-
-                                                    --><!-- Small window setters --><!--
-                                                    <VisualState.Setters>
-
-                                                        --><!-- Apply mobile itemtemplate and styles --><!--
-                                                        <Setter Target="menu2Text.MaxWidth" Value="310" />
-                                                    </VisualState.Setters>
-                                                </VisualState>
-                                            </VisualStateGroup>
-
-                                        </VisualStateManager.VisualStateGroups>-->
-
-                                        <StackPanel Orientation="Horizontal">
-                                            <Viewbox Height="24" Width="24">
-                                                <SymbolIcon Symbol="Contact" />
-                                            </Viewbox>
-                                            <TextBlock x:Name="menu2Text" Text="Or Tap this (Traditional reflection based Binding)"
-                                                       MaxWidth="{Binding Path=(vh:ViewHelpers.MaxFlyoutTextWidth), RelativeSource={RelativeSource TemplatedParent}, FallbackValue=100, TargetNullValue=100}"
-                                                       TextWrapping="WrapWholeWords" Margin="8,0,8,0"/>
-                                        </StackPanel>
-                                    </Border>
+                                    <vh:FlyoutButtonControl Text="Or Tap this (Traditional reflection based Binding)" />
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>

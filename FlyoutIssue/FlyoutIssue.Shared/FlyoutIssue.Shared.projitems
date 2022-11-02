@@ -18,6 +18,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)AppStateHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FlyoutButtonControl.xaml.cs">
+      <DependentUpon>FlyoutButtonControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Framework\DelegateCommandAsync.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\DispatchHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\ICommandEx.cs" />
@@ -34,6 +38,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)FlyoutButtonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

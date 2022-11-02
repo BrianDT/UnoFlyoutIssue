@@ -17,9 +17,9 @@
       <Version>6.2.11</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">
-      <Version>2.5.0</Version>
+      <Version>2.8.1</Version>
     </PackageReference>
-    <PackageReference Include="Uno.Core" Version="2.4.0" />
+    <PackageReference Include="Uno.Core" Version="4.0.1" />
   </ItemGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>

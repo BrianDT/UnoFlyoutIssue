@@ -7,28 +7,35 @@ namespace FlyoutIssue
     using System.IO;
     using System.Linq;
     using System.Runtime.InteropServices.WindowsRuntime;
+    using FlyoutIssue.Shared;
     using Microsoft.Extensions.Logging;
     using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
     using Windows.Foundation;
     using Windows.Foundation.Collections;
+#if WINDOWS_UWP
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
-    using Windows.UI.Xaml.Controls.Primitives;
-    using Windows.UI.Xaml.Data;
-    using Windows.UI.Xaml.Input;
-    using Windows.UI.Xaml.Media;
     using Windows.UI.Xaml.Navigation;
+    using LA = Windows.ApplicationModel.Activation;
+    using WUI = Windows.UI.Xaml;
+#else
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Controls;
+    using Microsoft.UI.Xaml.Navigation;
+    using LA = Microsoft.UI.Xaml;
+    using WUI = Microsoft.UI.Xaml;
+#endif
 
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
     public sealed partial class App : Application
     {
-#if NET5_0 && WINDOWS
-        private Window _window;
+#if NET6_0 && WINDOWS
+        private Window window;
 #else
-        private Windows.UI.Xaml.Window _window;
+        private WUI.Window window;
 #endif
 
         /// <summary>
@@ -41,7 +48,7 @@ namespace FlyoutIssue
             InitializeLogging();
 
             this.InitializeComponent();
-#if HAS_UNO || NETFX_CORE
+#if HAS_UNO || WINDOWS_UWP
             this.Suspending += OnSuspending;
 #endif
         }
@@ -50,8 +57,8 @@ namespace FlyoutIssue
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
-        /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        /// <param name="args">Details about the launch request and process.</param>
+        protected override void OnLaunched(LA.LaunchActivatedEventArgs args)
         {
 #if DEBUG
 			if (System.Diagnostics.Debugger.IsAttached)
@@ -59,14 +66,24 @@ namespace FlyoutIssue
 				// this.DebugSettings.EnableFrameRateCounter = true;
 			}
 #endif
-#if NET5_0 && WINDOWS
-            _window = new Window();
-            _window.Activate();
+#if NET6_0 && WINDOWS
+            this.window = new Window();
+            this.window.Activate();
 #else
-            _window = Windows.UI.Xaml.Window.Current;
+            this.window = WUI.Window.Current;
+#endif
+            AppStateHelper.SetMainWindow(this.window);
+#if NET6_0 || HAS_UNO
+            var previousExecutionState = args.UWPLaunchActivatedEventArgs.PreviousExecutionState;
+#if !(NET6_0 && WINDOWS)
+            var prelaunchActivated = args.UWPLaunchActivatedEventArgs.PrelaunchActivated;
+#endif
+#else
+            var previousExecutionState = args.PreviousExecutionState;
+            var prelaunchActivated = args.PrelaunchActivated;
 #endif
 
-            Frame rootFrame = _window.Content as Frame;
+            Frame rootFrame = this.window.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
@@ -77,17 +94,17 @@ namespace FlyoutIssue
 
                 rootFrame.NavigationFailed += this.OnNavigationFailed;
 
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                if (previousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     // TODO: Load state from previously suspended application
                 }
 
                 // Place the frame in the current Window
-                _window.Content = rootFrame;
+                this.window.Content = rootFrame;
             }
 
-#if !(NET5_0 && WINDOWS)
-            if (e.PrelaunchActivated == false)
+#if !(NET6_0 && WINDOWS)
+            if (prelaunchActivated == false)
 #endif
             {
                 if (rootFrame.Content == null)
@@ -95,11 +112,11 @@ namespace FlyoutIssue
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(MainPage), args.Arguments);
                 }
 
                 // Ensure the current window is active
-                _window.Activate();
+                this.window.Activate();
             }
         }
 
@@ -114,7 +131,7 @@ namespace FlyoutIssue
                 builder.AddProvider(new global::Uno.Extensions.Logging.WebAssembly.WebAssemblyConsoleLoggerProvider());
 #elif __IOS__
                 builder.AddProvider(new global::Uno.Extensions.Logging.OSLogLoggerProvider());
-#elif NETFX_CORE
+#elif WINDOWS_UWP || WINDOWS
                 builder.AddDebug();
 #else
                 builder.AddConsole();
@@ -157,6 +174,9 @@ namespace FlyoutIssue
             });
 
             global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory = factory;
+#if HAS_UNO
+			global::Uno.UI.Adapter.Microsoft.Extensions.Logging.LoggingAdapter.Initialize();
+#endif
         }
 
         /// <summary>

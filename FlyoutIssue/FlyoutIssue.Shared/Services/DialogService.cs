@@ -23,6 +23,10 @@ namespace FlyoutIssue.Shared.Services
             await DispatchHelper.Dispatcher.InvokeAsync(async () =>
             {
                 var dialog = new Windows.UI.Popups.MessageDialog(message);
+#if NET6_0 && WINDOWS
+                var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(AppStateHelper.GetMainWindow());
+                WinRT.Interop.InitializeWithWindow.Initialize(dialog, hwnd);
+#endif
                 await dialog.ShowAsync();
             });
         }

@@ -5,8 +5,11 @@ namespace FlyoutIssue.Shared
     using System;
     using System.Collections.Generic;
     using System.Text;
-    using Uno.Extensions.ValueType;
+#if WINDOWS_UWP
     using Windows.UI.Xaml;
+#else
+    using Microsoft.UI.Xaml;
+#endif
 
     /// <summary>
     /// Attached properties
@@ -17,7 +20,7 @@ namespace FlyoutIssue.Shared
         /// Gets the maximum flyout text width
         /// </summary>
         /// <param name="obj">The dependency object</param>
-        /// <returns></returns>
+        /// <returns>The value</returns>
         public static double GetMaxFlyoutTextWidth(DependencyObject obj)
         {
             return (double)obj.GetValue(MaxFlyoutTextWidthProperty);
