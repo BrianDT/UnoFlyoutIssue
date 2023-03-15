@@ -55,7 +55,7 @@ namespace FlyoutIssue
             this.DataContext = new MainViewModel(new DialogService());
             this.VM.PropertyChanged += this.OnViewModelPropertyChanged;
             var textReduction = 16 + 16 + 24 + 8 + 8; // Reduce by padding * 2, symbol, margin,
-#if ANDROID || (NET6_0 && WINDOWS)
+#if ANDROID || (NET7_0 && WINDOWS)
             textReduction += 16;
 #endif
             this.VM.SetFlyoutTextReduction(textReduction);

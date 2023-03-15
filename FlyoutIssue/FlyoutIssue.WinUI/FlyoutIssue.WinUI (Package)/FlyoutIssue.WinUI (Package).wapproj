@@ -38,7 +38,7 @@
     <ProjectGuid>c637841b-6414-41fa-8a57-6c94b7f088bc</ProjectGuid>
     <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
-    <AssetTargetFallback>net6.0-windows$(TargetPlatformVersion);$(AssetTargetFallback)</AssetTargetFallback>
+    <AssetTargetFallback>net7.0-windows$(TargetPlatformVersion);$(AssetTargetFallback)</AssetTargetFallback>
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
     <EntryPointProjectUniqueName>..\FlyoutIssue.WinUI\FlyoutIssue.WinUI.csproj</EntryPointProjectUniqueName>
@@ -64,10 +64,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="[1.1.4]">
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230217.4">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="[10.0.22621.1]">
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
   </ItemGroup>

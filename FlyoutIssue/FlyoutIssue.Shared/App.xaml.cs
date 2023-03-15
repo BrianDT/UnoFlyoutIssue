@@ -32,7 +32,7 @@ namespace FlyoutIssue
     /// </summary>
     public sealed partial class App : Application
     {
-#if NET6_0 && WINDOWS
+#if NET7_0 && WINDOWS
         private Window window;
 #else
         private WUI.Window window;
@@ -66,16 +66,16 @@ namespace FlyoutIssue
 				// this.DebugSettings.EnableFrameRateCounter = true;
 			}
 #endif
-#if NET6_0 && WINDOWS
+#if NET7_0 && WINDOWS
             this.window = new Window();
             this.window.Activate();
 #else
             this.window = WUI.Window.Current;
 #endif
             AppStateHelper.SetMainWindow(this.window);
-#if NET6_0 || HAS_UNO
+#if NET7_0 || HAS_UNO
             var previousExecutionState = args.UWPLaunchActivatedEventArgs.PreviousExecutionState;
-#if !(NET6_0 && WINDOWS)
+#if !(NET7_0 && WINDOWS)
             var prelaunchActivated = args.UWPLaunchActivatedEventArgs.PrelaunchActivated;
 #endif
 #else
@@ -103,7 +103,7 @@ namespace FlyoutIssue
                 this.window.Content = rootFrame;
             }
 
-#if !(NET6_0 && WINDOWS)
+#if !(NET7_0 && WINDOWS)
             if (prelaunchActivated == false)
 #endif
             {
